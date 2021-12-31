@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 
 namespace Kafka
 {
-    public class Producer
+    public class NewOrderProducer
     {
         private readonly IProducer<string, string> producer;
 
-        public Producer()
+        public NewOrderProducer()
         {
             var config = new ProducerConfig
             {
@@ -17,17 +17,17 @@ namespace Kafka
             producer = new ProducerBuilder<string, string>(config).Build();
         }
 
-        public Task<DeliveryResult<string, string>> Produce()
+        public Task<DeliveryResult<string, string>> Produce(
+            string topic,
+            string keyValue)
         {
-            var order = "123,321,1.99";
-
             var message = new Message<string, string>
             {
-                Key = order,
-                Value = order
+                Key = keyValue,
+                Value = keyValue
             };
 
-            return producer.ProduceAsync("ECOMMERCE_NEW_ORDER", message);
+            return producer.ProduceAsync(topic, message);
         }
     }
 }

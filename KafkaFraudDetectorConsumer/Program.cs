@@ -1,12 +1,20 @@
-﻿namespace KafkaFraudDetectorConsumer
+﻿using KafkaConsumer;
+using System;
+using System.Threading.Tasks;
+
+namespace KafkaFraudDetectorConsumer
 {
     class Program
     {
         static void Main(string[] args)
         {
-            var consumer = new FraudDetectorConsumer();
+            var fraudDetectorConsumer = new FraudDetectorConsumer();
+            var emailConsumer = new EmailConsumer();
 
-            consumer.Consume();
+            Task.Run(() => fraudDetectorConsumer.Consume());
+            Task.Run(() => emailConsumer.Consume());
+
+            Console.ReadKey();
         }
     }
 }

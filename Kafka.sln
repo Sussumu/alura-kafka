@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KafkaProducer", "Kafka\KafkaProducer.csproj", "{9728EE7A-2171-4914-A87B-B486546575C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KafkaFraudDetectorConsumer", "KafkaFraudDetectorConsumer\KafkaFraudDetectorConsumer.csproj", "{4B9089E5-98BE-488C-8752-E7A8DB848E55}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KafkaConsumer", "KafkaFraudDetectorConsumer\KafkaConsumer.csproj", "{4B9089E5-98BE-488C-8752-E7A8DB848E55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
