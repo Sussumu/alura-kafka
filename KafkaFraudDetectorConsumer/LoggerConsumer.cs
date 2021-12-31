@@ -1,19 +1,19 @@
 ﻿using Confluent.Kafka;
 using System;
-using System.Threading;
 
 namespace KafkaConsumer
 {
-    public class FraudDetectorConsumer
+    public class LoggerConsumer
     {
         private readonly IConsumer<string, string> consumer;
 
-        public FraudDetectorConsumer()
+        public LoggerConsumer()
         {
             var config = new ConsumerConfig
             {
                 BootstrapServers = "localhost:9092",
-                GroupId = nameof(FraudDetectorConsumer)
+                GroupId = nameof(LoggerConsumer),
+                AllowAutoCreateTopics = true
             };
 
             consumer = new ConsumerBuilder<string, string>(config).Build();
@@ -21,7 +21,7 @@ namespace KafkaConsumer
 
         public void Consume()
         {
-            consumer.Subscribe("ECOMMERCE_NEW_ORDER");
+            consumer.Subscribe("^ECOMMERCE.*");
 
             try
             {
@@ -32,10 +32,8 @@ namespace KafkaConsumer
                     if (result is null)
                         continue;
 
-                    Thread.Sleep(2000);
-
                     Console.WriteLine($"-------------------------");
-                    Console.WriteLine($"FRAUD DETECTOR");
+                    Console.WriteLine($"LOG {result.Topic}");
                     Console.WriteLine($"value:\t\t{result.Message.Value}");
                     Console.WriteLine($"partition:\t{result.Partition}");
                     Console.WriteLine($"offset:\t\t{result.Offset}");

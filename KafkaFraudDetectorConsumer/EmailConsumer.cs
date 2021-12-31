@@ -32,6 +32,7 @@ namespace KafkaConsumer
                         continue;
 
                     Console.WriteLine($"-------------------------");
+                    Console.WriteLine($"EMAIL");
                     Console.WriteLine($"Sending email");
                     Console.WriteLine($"-------------------------\n");
                 }

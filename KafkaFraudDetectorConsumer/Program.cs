@@ -10,9 +10,11 @@ namespace KafkaFraudDetectorConsumer
         {
             var fraudDetectorConsumer = new FraudDetectorConsumer();
             var emailConsumer = new EmailConsumer();
+            var loggerConsumer = new LoggerConsumer();
 
             Task.Run(() => fraudDetectorConsumer.Consume());
             Task.Run(() => emailConsumer.Consume());
+            Task.Run(() => loggerConsumer.Consume());
 
             Console.ReadKey();
         }
